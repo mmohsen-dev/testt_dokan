@@ -699,13 +699,6 @@ class ProductController extends DokanRESTController {
      * @return array
      */
     protected function prepare_data_for_response( $product, $request ) {
-		if ($product->get_type() == "variable") {
-			$regularpriceapp = wc_format_decimal($product->get_variation_regular_price( 'max' ), 2 );
-			}
-			else {
-				$regularpriceapp = wc_format_decimal( $product->get_regular_price(), 2 );
-				}
-
         $context   = ! empty( $request['context'] ) ? $request['context'] : 'view';
         $author_id = get_post_field( 'post_author', $product->get_id() );
         $store     = dokan()->vendor->get( $author_id );
@@ -727,7 +720,7 @@ class ProductController extends DokanRESTController {
             'short_description'     => 'view' === $context ? apply_filters( 'woocommerce_short_description', $product->get_short_description() ) : $product->get_short_description( $context ),
             'sku'                   => $product->get_sku( $context ),
             'price'                 => $product->get_price( $context ),
-            'regular_price'         => $regularpriceapp,
+            'regular_price'         => $product->get_regular_price( $context ),
             'sale_price'            => $product->get_sale_price( $context ) ? $product->get_sale_price( $context ) : '',
             'date_on_sale_from'     => wc_rest_prepare_date_response( $product->get_date_on_sale_from( $context ), false ),
             'date_on_sale_from_gmt' => wc_rest_prepare_date_response( $product->get_date_on_sale_from( $context ) ),

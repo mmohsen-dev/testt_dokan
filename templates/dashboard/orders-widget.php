@@ -51,7 +51,6 @@
                     <span class="title"><?php esc_html_e( 'On hold', 'dokan-lite' ); ?></span> <span class="count"><?php echo esc_html( number_format_i18n( $orders_count->{'wc-on-hold'}, 0  ) ); ?></span>
                 </a>
             </li>
-
         </ul>
     </div>
     <div class="content-half-part">

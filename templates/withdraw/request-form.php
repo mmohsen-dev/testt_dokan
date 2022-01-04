@@ -6,7 +6,6 @@
  *
  * @package dokan
  */
-$amount = dokan_get_seller_balance( dokan_get_current_user_id(), false ); 
 ?>
 <?php if ( ! empty( $payment_methods ) ) : ?>
 <form class="dokan-form-horizontal withdraw" role="form" method="post">

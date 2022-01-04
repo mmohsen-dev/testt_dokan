@@ -705,7 +705,7 @@ function dokan_get_admin_commission_by( $order, $context ) {
     }
 
     $saved_admin_fee = get_post_meta( $order->get_id(), '_dokan_admin_fee', true );
-	$giftcard = get_post_meta( $order->get_id(), '_ywgc_applied_gift_cards_totals', true );
+
     if ( $saved_admin_fee != '' ) {
         return apply_filters( 'dokan_order_admin_commission', $saved_admin_fee, $order );
     }
@@ -742,8 +742,7 @@ function dokan_get_admin_commission_by( $order, $context ) {
             }
         }
     }
-	
-	$auraseller_commission =  $total_line - $admin_commission;
+
     if ( 'admin' == $shipping_recipient ) {
         $admin_commission += $order->get_total_shipping() - $order->get_total_shipping_refunded();
     }
@@ -751,7 +750,7 @@ function dokan_get_admin_commission_by( $order, $context ) {
     if ( 'admin' == $tax_recipient ) {
         $admin_commission += $order->get_total_tax() - $order->get_total_tax_refunded();
     }
-	$admin_commission = $order->get_total() - $auraseller_commission;
+
     return apply_filters( 'dokan_order_admin_commission', $admin_commission, $order );
 }
 

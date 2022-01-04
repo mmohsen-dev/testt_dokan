@@ -333,7 +333,7 @@ function dokan_author_total_sales( $seller_id ) {
 
     if ( $earnings === false ) {
         $count = $wpdb->get_row(
-            $wpdb->prepare( "SELECT SUM(order_total) as earnings FROM {$wpdb->prefix}dokan_orders WHERE seller_id = %d AND order_status IN('wc-completed','wc-out-for-delivery', 'wc-waiting-courier', 'wc-confirmed', 'wc-processing', 'wc-on-hold')", $seller_id )
+            $wpdb->prepare( "SELECT SUM(order_total) as earnings FROM {$wpdb->prefix}dokan_orders WHERE seller_id = %d AND order_status IN('wc-completed', 'wc-processing', 'wc-on-hold')", $seller_id )
         );
 
         $earnings = $count->earnings;
